@@ -2,7 +2,7 @@
   <div id="headerBox">
       <h1>BOOLFLIX</h1>
       <div id="searchBox">
-          <input v-model="ricerca" type="text">
+          <input v-model="ricerca" @keyup.enter="aggiungiRicerca()" type="text">
           <button @click="aggiungiRicerca()">CERCA</button>
       </div>
   </div>

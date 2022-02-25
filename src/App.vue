@@ -21,22 +21,16 @@ export default {
   data() {
     return{
       arrayFilm: [],
-      daCercare: "",
-      aaa: false
+      verifica: false
     }
   },
 
   methods: {
     getRisposta(ricerca) {
-      this.daCercare = ricerca
-      this.aaa = true
-      console.log(this.daCercare)
-    },
+      this.verifica = true
 
-    apriApi() {
-
-      if (this.aaa == true) {
-        axios.get("https://api.themoviedb.org/3/search/movie?api_key=86e1350e024b4487374d1c81a8d7c6db&query=" + this.daCercare + "&language=it-IT")
+      if (this.verifica == true) {
+        axios.get("https://api.themoviedb.org/3/search/movie?api_key=86e1350e024b4487374d1c81a8d7c6db&query=" + ricerca + "&language=it-IT")
 
         .then(risultato => {
           this.arrayFilm = risultato.data.results;
@@ -48,16 +42,7 @@ export default {
           console.log(error);
         })
       }
-
     }
-  },
-
-  beforeUpdate() {
-    this.getRisposta()
-  },
-  
-  updated() {
-    this.apriApi()
   }
 }
 </script>

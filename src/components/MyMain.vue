@@ -1,7 +1,7 @@
 <template>
   <div id="mainBox">
       <div id="filmRow">
-          <FilmCard :dati="datiFilm"></FilmCard>
+          <FilmCard :dati="film"></FilmCard>
       </div>
   </div>
 </template>
@@ -23,10 +23,6 @@ export default {
         return{
             datiFilm: []
         }
-    },
-
-    updated() {
-        this.datiFilm = this.film
     }
 }
 </script>
