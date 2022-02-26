@@ -11,13 +11,18 @@
 
       <div class="flip-card-back">
         
-        <h4><span class="titolo">Titolo:</span>{{elemento.original_title}}</h4>
+        <h4><span class="titolo">Titolo:&nbsp;</span>{{elemento.original_title}}</h4>
 
         <h4 class="lingua" v-if="elemento.original_language == 'en' "><span class="titolo">Lingua: </span> <img class="flag" src="../../assets/img/gb.svg" alt=""></h4>
         <h4 class="lingua" v-else-if="elemento.original_language == 'it' "><span class="titolo">Lingua: </span> <img class="flag" src="../../assets/img/it.svg" alt=""></h4>
         <h4 class="lingua" v-else><span class="titolo">Lingua:&nbsp;</span>{{elemento.original_language}}</h4>
         
-        <h4><span class="titolo">Voto:&nbsp;</span>{{elemento.vote_average}}</h4>
+        <h4 v-if="elemento.vote_average >= 0 && elemento.vote_average <= 2"><span class="titolo">Voto:&nbsp;</span>&starf;</h4>
+        <h4 v-else-if="elemento.vote_average > 2 && elemento.vote_average <= 4"><span class="titolo">Voto:&nbsp;</span>&starf;&starf;</h4>
+        <h4 v-else-if="elemento.vote_average > 4 && elemento.vote_average <= 6"><span class="titolo">Voto:&nbsp;</span>&starf;&starf;&starf;</h4>
+        <h4 v-else-if="elemento.vote_average > 6 && elemento.vote_average <= 8"><span class="titolo">Voto:&nbsp;</span>&starf;&starf;&starf;&starf;</h4>
+        <h4 v-else><span class="titolo">Voto:&nbsp;</span>&starf;&starf;&starf;&starf;&starf;</h4>
+        
 
         <h4 class="overview"><span class="titolo">Overview:</span><br>{{elemento.overview}}</h4>
       </div>
@@ -34,7 +39,8 @@ export default {
   },
 
   methods: {
-    
+    // &starf;
+
   },
 
   created() {
@@ -59,6 +65,11 @@ export default {
       height: 100%;
       transition: transform 0.6s;
       transform-style: preserve-3d;
+
+      h4{
+        padding: 5px 0;
+        font-weight: 400;
+      }
 
       .titolo{
         font-weight: 800;
@@ -109,13 +120,5 @@ export default {
     height: 100%;
     object-position: top;
   }
-
-  h4{
-    padding: 5px 0;
-  }
-
   
-
-  
-    
 </style>
