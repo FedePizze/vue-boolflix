@@ -40,9 +40,16 @@
         </div>
       
         <div id="searchBox">
-            <input v-model="ricerca" @keyup.enter="aggiungiRicerca()" type="text">
-            <button @click="aggiungiRicerca()">CERCA</button>
-            <button @click="reload()">NUOVA RICERCA</button>
+
+            <div v-if="this.generi == ''">
+                <input v-model="ricerca" @keyup.enter="aggiungiRicerca()" type="text">
+                <button @click="aggiungiRicerca()">CERCA</button>
+            </div>
+
+            <div v-else>
+                <button @click="reload()">NUOVA RICERCA</button>
+            </div>
+
         </div>
   </div>
 </template>
@@ -51,14 +58,13 @@
 export default {
     name: "MyHeader",
     props: {
-        generi: Array,
+        generi: Array
     },
 
     data() {
         return{
             ricerca: '',
             genere: '',
-            generiCount: 0,
         }
     },
 

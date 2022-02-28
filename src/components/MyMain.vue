@@ -25,7 +25,7 @@ export default {
     props: {
         film: Array,
         serie: Array,
-        genere: Number
+        genere: Number,
     },
 
     components: {
