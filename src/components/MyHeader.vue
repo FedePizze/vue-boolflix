@@ -5,10 +5,11 @@
             <h1>BOOLFLIX</h1>
 
             <select id="select" @change="filtraGenere($event)">
-                <option value="">Scegli un genere</option>
+                <option value="Tutti i generi"><h5>TUTTI I GENERI</h5></option>
                 <option v-for="(elemento, index) in generi" :key="index.id">
                     <h5 v-if="elemento == 12" href="">Avventura</h5>
                     <h5 v-else-if="elemento == 28" href="">Azione</h5>
+                    <h5 v-else-if="elemento == 10759" href="">Alta Tensione</h5>
                     <h5 v-else-if="elemento == 878" href="">Fantascenza</h5>
                     <h5 v-else-if="elemento == 10751" href="">Famiglia</h5>
                     <h5 v-else-if="elemento == 16" href="">Animazione</h5>
@@ -18,6 +19,21 @@
                     <h5 v-else-if="elemento == 18" href="">Dramma</h5>
                     <h5 v-else-if="elemento == 10749" href="">Romance</h5>
                     <h5 v-else-if="elemento == 27" href="">Horror</h5>
+                    <h5 v-else-if="elemento == 80" href="">Crime</h5>
+                    <h5 v-else-if="elemento == 99" href="">Documentario</h5>
+                    <h5 v-else-if="elemento == 36" href="">Storia</h5>
+                    <h5 v-else-if="elemento == 10402" href="">Musica</h5>
+                    <h5 v-else-if="elemento == 9648" href="">Misteri</h5>
+                    <h5 v-else-if="elemento == 10770" href="">TV Movie</h5>
+                    <h5 v-else-if="elemento == 10752" href="">Guerra</h5>
+                    <h5 v-else-if="elemento == 37" href="">Western</h5>
+                    <h5 v-else-if="elemento == 10762" href="">Kids</h5>
+                    <h5 v-else-if="elemento == 10763" href="">News</h5>
+                    <h5 v-else-if="elemento == 10764" href="">Reality</h5>
+                    <h5 v-else-if="elemento == 10765" href="">Sci-Fi</h5>
+                    <h5 v-else-if="elemento == 10766" href="">Soap Opera</h5>
+                    <h5 v-else-if="elemento == 10767" href="">Talk Show</h5>
+                    <h5 v-else-if="elemento == 10768" href="">Politica</h5>
                 </option>
             </select>
 
@@ -26,6 +42,7 @@
         <div id="searchBox">
             <input v-model="ricerca" @keyup.enter="aggiungiRicerca()" type="text">
             <button @click="aggiungiRicerca()">CERCA</button>
+            <button @click="reload()">NUOVA RICERCA</button>
         </div>
   </div>
 </template>
@@ -34,14 +51,14 @@
 export default {
     name: "MyHeader",
     props: {
-        generi: Array
+        generi: Array,
     },
 
     data() {
         return{
             ricerca: '',
             genere: '',
-            generiCount: 0
+            generiCount: 0,
         }
     },
 
@@ -50,6 +67,11 @@ export default {
             console.log(this.ricerca)
 
             this.$emit('ricercaFilm', this.ricerca)
+            this.$emit('ricercaSerie', this.ricerca)
+        },
+
+        reload() {
+            location.reload();
         },
 
         filtraGenere($event) {
@@ -86,16 +108,24 @@ export default {
             margin: 0px 30px;
             }
 
-            .fa-solid {
-                width: 20px;
+            select{
+                padding: 5px 20px;
+                border-radius: 5px;
+                background-color: white;
+            }
+
+            option{
+                color: red;
+                font-size: 15px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            h5{
+                text-align: center;
                 height: 20px;
-                color: white;
+                margin-right: 10px;
             }
-
-            #generiBoxActive{
-                display: block;
-            }
-
         }
 
         #searchBox{
@@ -104,7 +134,6 @@ export default {
             input{
             padding: 6px;
             border-radius: 6px;
-            margin-right: 10px;
             }
 
             button{
@@ -113,6 +142,7 @@ export default {
                 color: white;
                 border-radius: 6px;
                 font-weight: 700;
+                margin-left: 10px;
             }
         }
     }
