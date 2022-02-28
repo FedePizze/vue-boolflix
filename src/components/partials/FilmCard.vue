@@ -1,7 +1,7 @@
 <template>
   
 
-  <div class="flip-card" v-for="(elemento, index) in dati" :key="index.id">
+  <div class="flip-card" v-for="(elemento, index) in generiFiltrati" :key="index.id">
 
     <div class="flip-card-inner">
 
@@ -35,7 +35,8 @@
 export default {
   name: "FilmCard",
   props: {
-    dati: Array
+    dati: Array,
+    datiGenere: Number
   },
 
   methods: {
@@ -45,7 +46,23 @@ export default {
 
   created() {
     console.log(this.dati)
+  },
+
+  computed: {
+    generiFiltrati() {
+      if (!this.datiGenere == 0) {
+
+        return this.dati.filter(item => {
+        return item.genre_ids.includes(this.datiGenere)
+        });
+        
+      } else {
+
+        return this.dati
+      }
+    }
   }
+
 }
 </script>
 
@@ -100,6 +117,20 @@ export default {
     .flip-card-front {
     background-color: #bbb;
     }
+
+    .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    }
+
+    .copertinaFilm{
+    width: 100%;
+    height: 100%;
+    object-position: auto;
+    }
     
   }
 
@@ -107,18 +138,8 @@ export default {
     transform: rotateY(180deg);
   }
 
-  .flip-card-front, .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
+  
 
-  .copertinaFilm{
-    width: 100%;
-    height: 100%;
-    object-position: top;
-  }
+  
   
 </style>

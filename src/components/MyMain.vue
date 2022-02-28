@@ -1,7 +1,7 @@
 <template>
   <div id="mainBox">
       <div id="filmRow">
-          <FilmCard :dati="film"></FilmCard>
+          <FilmCard :dati="film" :datiGenere="genere"></FilmCard>
       </div>
   </div>
 </template>
@@ -12,7 +12,8 @@ import FilmCard from "./partials/FilmCard.vue"
 export default {
     name: "MyMain",
     props: {
-        film: Array
+        film: Array,
+        genere: Number
     },
 
     components: {
@@ -23,7 +24,7 @@ export default {
         return{
             datiFilm: []
         }
-    }
+    },
 }
 </script>
 
