@@ -137,9 +137,5 @@ export default {
   .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
   }
-
-  
-
-  
   
 </style>

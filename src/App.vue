@@ -60,27 +60,7 @@ export default {
 
           
           //console.log(risultato.data.results);
-
-          for(let i = 0; i < this.arrayFilm.length; i++) {
-
-            if(!this.genereFilm.includes(this.arrayFilm[i].genre_ids)) {
-
-              this.genereFilm.push(this.arrayFilm[i].genre_ids);
-              
-            }
-          }
-          console.log(this.genereFilm)
-
-          var merged = [].concat.apply([], this.genereFilm);
-          this.fine = merged
-
-          for(let i = 0; i < this.fine.length; i++) {
-
-            if(!this.altro.includes(this.fine[i])) {
-
-              this.altro.push(this.fine[i]);
-            }
-          }
+          this.genere(this.genereFilm, this.arrayFilm, this.fine, this.altro)
             
         })
 
@@ -111,43 +91,58 @@ export default {
           this.arraySerie = risultato.data.results;
 
           
+          this.genere(this.genereSerie, this.arraySerie, this.fineSerie, this.altroSerie)
 
-          for(let i = 0; i < this.arraySerie.length; i++) {
-
-            if(!this.genereSerie.includes(this.arraySerie[i].genre_ids)) {
-
-              this.genereSerie.push(this.arraySerie[i].genre_ids);
-              
-            }
-          }
-
-          var merged = [].concat.apply([], this.genereSerie);
-          this.fineSerie = merged
-
-          for(let i = 0; i < this.fineSerie.length; i++) {
-
-            if(!this.altroSerie.includes(this.fineSerie[i])) {
-
-              this.altroSerie.push(this.fineSerie[i]);
-            }
-          }
-
-          this.iGeneri = [this.altro, this.altroSerie]
-
-          var newMerged = [].concat.apply([], this.iGeneri);
-          this.tuttiGeneri = newMerged
-          console.log(this.tuttiGeneri)
-
-          for(let i = 0; i < this.tuttiGeneri.length; i++) {
-
-            if(!this.pushFinale.includes(this.tuttiGeneri[i])) {
-
-              this.pushFinale.push(this.tuttiGeneri[i]);
-            }
-          }
-            
+          this.filtrggio(this.iGeneri, this.tuttiGeneri, this.pushFinale, this.altro, this.altroSerie)
+  
         })
 
+      }
+    },
+
+
+
+
+    // FUNZIONI
+
+    genere(aaa, bbb, ccc, ddd) { 
+
+      for(let i = 0; i < bbb.length; i++) {
+
+        if(!aaa.includes(bbb[i].genre_ids)) {
+
+          aaa.push(bbb[i].genre_ids);
+              
+        }
+      }
+
+      var merged = [].concat.apply([], aaa);
+      ccc = merged
+
+      for(let i = 0; i < ccc.length; i++) {
+
+        if(!ddd.includes(ccc[i])) {
+
+          ddd.push(ccc[i]);
+        }
+      }
+
+    },
+
+    filtrggio(aaa, bbb, ccc, ddd, eee) {
+
+      aaa = [ddd, eee]
+
+      var newMerged = [].concat.apply([], aaa);
+      bbb = newMerged
+      console.log(bbb)
+
+      for(let i = 0; i < bbb.length; i++) {
+
+        if(!ccc.includes(bbb[i])) {
+
+          ccc.push(bbb[i]);
+        }
       }
     },
 
@@ -216,6 +211,8 @@ export default {
   }
 }
 </script>
+
+
 
 <style lang="scss">
   @import "./assets/style/general.scss";
